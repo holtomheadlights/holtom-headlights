@@ -1,495 +1,465 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-CA">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Holtom Headlights</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mobile headlight restoration in Medicine Hat and surrounding areas. Restore cloudy, yellow headlights for safer night driving and a cleaner-looking vehicle.">
+  <meta name="theme-color" content="#0b0711">
+  <title>Holtom Headlights | Mobile Headlight Restoration in Medicine Hat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0a;
-      --card: #111111;
-      --muted: #c7c7c7;
-      --border: #222222;
-      --accent: #a855f7;
-      --accent2: #c084fc;
+      --bg: #09070d;
+      --surface: #141019;
+      --surface-2: #1c1524;
+      --text: #f8f5fb;
+      --muted: #c8bfce;
+      --purple: #a855f7;
+      --purple-light: #d8b4fe;
+      --purple-dark: #6d28d9;
+      --line: rgba(216, 180, 254, .18);
+      --shadow: 0 24px 70px rgba(0, 0, 0, .34);
+      --radius: 22px;
+      --max: 1160px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: white;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 80% 8%, rgba(126, 34, 206, .16), transparent 28rem),
+        var(--bg);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
     }
-
+    img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      letter-spacing: .06em;
-    }
-
-    .brand img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-      border-radius: 999px;
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      font-size: 14px;
-    }
-
-    .nav-links a:hover { color: var(--accent2); }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      background: radial-gradient(circle at top right, rgba(168,85,247,.18), transparent 30%);
-      padding: 70px 0;
-    }
-
-    .hero-logo-bg {
-      position: absolute;
-      right: -80px;
-      top: -80px;
-      width: 360px;
-      opacity: 0.05;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .badge {
-      display: inline-block;
-      margin-bottom: 16px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      color: #bbbbbb;
-      font-size: 12px;
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 760px;
-      font-size: 58px;
-      line-height: 1.05;
-    }
-
-    h2 {
-      margin: 0 0 10px;
-      font-size: 38px;
-    }
-
-    h3 {
-      margin: 0 0 8px;
-      font-size: 22px;
-    }
-
-    .purple { color: var(--accent); }
-
-    .lead {
-      max-width: 760px;
-      margin-top: 22px;
-      font-size: 21px;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 14px;
-      font-weight: 700;
-      transition: transform .15s ease, border-color .15s ease, background .15s ease;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: white;
-    }
-
-    .btn-outline {
-      border: 1px solid rgba(255,255,255,.18);
-      background: transparent;
-    }
-
-    .btn-dark {
-      border: 1px solid #333333;
-      background: #121212;
-    }
-
-    .section {
-      padding: 70px 0;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 22px;
-      padding: 24px;
-    }
-
-    .card p, .section p {
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 28px;
-    }
-
-    .mini-card {
-      background: #151515;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 18px;
-      padding: 18px;
-    }
-
-    .mini-card strong { display: block; margin-bottom: 6px; }
-
-    .featured {
-      border-color: rgba(168,85,247,.55);
-      box-shadow: 0 0 0 1px rgba(168,85,247,.1);
-    }
-
-    .price {
-      font-size: 34px;
-      font-weight: 700;
-      margin: 12px 0;
-    }
-
-    .step-number {
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(calc(100% - 36px), var(--max)); margin-inline: auto; }
+    .section { padding: 88px 0; }
+    .section-dark { background: rgba(255,255,255,.018); border-block: 1px solid rgba(255,255,255,.05); }
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-      background: rgba(168,85,247,.16);
-      color: var(--accent2);
-      font-weight: 700;
+      gap: 8px;
+      margin: 0 0 12px;
+      color: var(--purple-light);
+      font-size: .79rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
     }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 28px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: #111;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 22px;
-      margin-top: 28px;
-    }
-
-    .social-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .social-link {
-      display: flex;
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--purple); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.08; }
+    h1 { margin-bottom: 22px; font-size: clamp(2.75rem, 7vw, 5.8rem); letter-spacing: -.055em; }
+    h2 { margin-bottom: 16px; font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -.04em; }
+    h3 { margin-bottom: 10px; font-size: 1.2rem; }
+    .purple { color: var(--purple-light); }
+    .lead { max-width: 720px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); }
+    .section-heading { max-width: 760px; margin-bottom: 38px; }
+    .btn {
+      display: inline-flex;
+      min-height: 52px;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.25);
+      justify-content: center;
+      padding: 13px 21px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
     }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg, var(--purple), var(--purple-dark)); box-shadow: 0 12px 32px rgba(126,34,206,.32); }
+    .btn-secondary { border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.05); }
+    .btn-secondary:hover { border-color: var(--purple-light); background: rgba(168,85,247,.1); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
-    .social-link:hover {
-      border-color: rgba(168,85,247,.5);
-      background: rgba(0,0,0,.4);
+    .site-header {
+      position: sticky;
+      z-index: 50;
+      top: 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(9,7,13,.88);
+      backdrop-filter: blur(16px);
     }
+    .nav { display: flex; min-height: 74px; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: -.03em; }
+    .brand img { width: 44px; height: 44px; border-radius: 50%; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: .94rem; font-weight: 700; }
+    .nav-links a:hover { color: var(--text); }
 
-    .social-link span:last-child {
-      color: var(--accent2);
-      font-size: 14px;
-      font-weight: 700;
+    .hero { position: relative; overflow: hidden; padding: 104px 0 88px; }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(9,7,13,.98) 8%, rgba(9,7,13,.83) 52%, rgba(9,7,13,.35));
+      pointer-events: none;
     }
+    .hero-mark {
+      position: absolute;
+      top: 50%; right: max(2vw, 20px);
+      width: min(42vw, 520px);
+      opacity: .075;
+      transform: translateY(-50%);
+      filter: grayscale(1);
+    }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 48px; }
+    .hero-copy { max-width: 760px; }
+    .hero-copy .lead { margin-bottom: 30px; }
+    .trust-row { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 32px; color: var(--muted); font-weight: 700; }
+    .trust-row span::before { content: "✓"; margin-right: 8px; color: var(--purple-light); }
+    .hero-card {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(28,21,36,.9), rgba(15,11,19,.92));
+      box-shadow: var(--shadow);
+    }
+    .hero-card strong { display: block; margin-bottom: 8px; font-size: 1.45rem; }
+    .hero-card p { color: var(--muted); }
+    .hero-card .phone { margin: 18px 0; color: var(--purple-light); font-size: clamp(1.6rem, 4vw, 2.25rem); font-weight: 900; }
 
-    footer {
-      padding: 26px 20px 36px;
-      text-align: center;
-      color: #8a8a8a;
+    .comparison-list { display: grid; gap: 24px; }
+    .comparison-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
     }
+    .comparison-title { padding: 18px 20px; border-bottom: 1px solid var(--line); font-weight: 800; }
+    .comparison-images { display: grid; grid-template-columns: 1fr 1fr; }
+    .photo { position: relative; min-height: 290px; overflow: hidden; background: #0c0910; }
+    .photo + .photo { border-left: 1px solid var(--line); }
+    .photo img { width: 100%; height: 100%; min-height: 290px; object-fit: cover; }
+    .photo-label {
+      position: absolute;
+      top: 14px; left: 14px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(9,7,13,.84);
+      color: #fff;
+      font-size: .73rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+    .photo.after .photo-label { background: rgba(109,40,217,.9); }
+
+    .pricing-wrap {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(145deg, var(--surface-2), var(--surface));
+      box-shadow: var(--shadow);
+    }
+    .pricing-copy { padding: clamp(30px, 6vw, 62px); }
+    .price-line { margin: 18px 0 10px; color: var(--purple-light); font-size: clamp(2.7rem, 7vw, 5rem); font-weight: 900; letter-spacing: -.06em; line-height: 1; }
+    .per { margin-bottom: 24px; color: var(--text); font-size: 1.15rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+    .pricing-copy > p { color: var(--muted); }
+    .check-list { display: grid; gap: 10px; margin: 26px 0 30px; padding: 0; list-style: none; }
+    .check-list li { display: flex; gap: 10px; }
+    .check-list li::before { content: "✓"; color: var(--purple-light); font-weight: 900; }
+    .pricing-photo { min-height: 500px; }
+    .pricing-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .info-card { padding: 27px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .icon { display: grid; width: 46px; height: 46px; margin-bottom: 20px; place-items: center; border-radius: 14px; background: rgba(168,85,247,.14); color: var(--purple-light); font-size: 1.25rem; font-weight: 900; }
+    .info-card p { margin-bottom: 0; color: var(--muted); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+    .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .portfolio-card { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .portfolio-card .comparison-images .photo,
+    .portfolio-card .comparison-images img { min-height: 220px; }
+    .portfolio-card h3 { margin: 0; padding: 16px 18px; border-top: 1px solid var(--line); }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 30px;
+      padding: clamp(30px, 6vw, 62px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(109,40,217,.25), rgba(20,16,25,.95) 55%);
+      box-shadow: var(--shadow);
+    }
+    .contact-details { display: grid; align-content: center; gap: 12px; }
+    .contact-link { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 15px 17px; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; background: rgba(0,0,0,.17); font-weight: 800; }
+    .contact-link span { color: var(--muted); font-size: .85rem; }
+    .socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+    footer { padding: 30px 0 96px; color: var(--muted); font-size: .9rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid rgba(255,255,255,.08); padding-top: 25px; }
+    .mobile-cta { display: none; }
 
     @media (max-width: 900px) {
-      h1 { font-size: 44px; }
-      .grid-3, .mini-grid, .gallery, .contact-grid { grid-template-columns: 1fr; }
-      .hero-logo-bg { width: 240px; right: -50px; top: -30px; }
+      .nav-links a:not(.btn) { display: none; }
+      .hero-grid, .pricing-wrap, .contact-box { grid-template-columns: 1fr; }
+      .hero-card { max-width: 620px; }
+      .pricing-photo { min-height: 360px; order: -1; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
     }
-
-    @media (max-width: 640px) {
-      .nav-inner {
-        flex-direction: column;
-        align-items: flex-start;
+    @media (max-width: 650px) {
+      .section { padding: 66px 0; }
+      .hero { padding: 75px 0 64px; }
+      .hero-grid { gap: 30px; }
+      .hero-mark { width: 75vw; right: -18vw; }
+      .comparison-images { grid-template-columns: 1fr; }
+      .photo + .photo { border-left: 0; border-top: 1px solid var(--line); }
+      .photo, .photo img { min-height: 235px; }
+      .portfolio-grid, .card-grid { grid-template-columns: 1fr; }
+      .pricing-copy { padding: 30px 22px; }
+      .contact-box { padding: 30px 22px; }
+      .contact-link { align-items: flex-start; flex-direction: column; gap: 2px; }
+      .footer-row { flex-direction: column; }
+      body { padding-bottom: 74px; }
+      .mobile-cta {
+        position: fixed;
+        z-index: 80;
+        right: 12px; bottom: 12px; left: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1.35fr;
+        gap: 8px;
+        padding: 8px;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 18px;
+        background: rgba(9,7,13,.94);
+        box-shadow: 0 12px 34px rgba(0,0,0,.5);
+        backdrop-filter: blur(14px);
       }
-
-      h1 { font-size: 36px; }
-      h2 { font-size: 30px; }
-      .lead { font-size: 18px; }
+      .mobile-cta .btn { min-height: 47px; padding: 10px 12px; font-size: .88rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <div class="nav">
-    <div class="container nav-inner">
-      <div class="brand">
-        <img src="logo.png">
-        <span>HOLTOM</span>
-      </div>
-      <div class="nav-links">
-        <a href="#services">Services</a>
+  <!-- Upload logo.png and all before/after JPG files beside this index.html file. -->
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Holtom Headlights home">
+        <img src="logo.png" alt="Holtom Headlights logo">
+        <span>Holtom Headlights</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#results">Results</a>
         <a href="#pricing">Pricing</a>
-        <a href="#gallery">Gallery</a>
+        <a href="#services">Services</a>
         <a href="#contact">Contact</a>
-      </div>
+        <a class="btn btn-primary" href="sms:+14038721281">Text for a Quote</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <section class="hero">
-    <img class="hero-logo-bg" src="logo.png" alt="" />
-    <div class="container">
-      <span class="badge">Mobile Headlight Restoration • Medicine Hat</span>
-      <h1>Cloudy headlights?<br />Make them look <span class="purple">clear again.</span></h1>
-      <p class="lead">
-        Holtom Headlights restores faded, yellow, and oxidized headlights so your vehicle looks better and you can drive with more confidence at night. Call or text for a fast quote.
-      </p>
-      <div class="button-row">
-        <a class="btn btn-primary" href="tel:14038721281">Call or Text Now</a>
-        <a class="btn btn-outline" href="#quote">Get a Fast Quote</a>
-        <a class="btn btn-dark" href="#gallery">See Before &amp; After</a>
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <img class="hero-mark" src="logo.png" alt="" aria-hidden="true">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Mobile Headlight Restoration</p>
+          <h1>Cloudy headlights?<br><span class="purple">Make them clear again.</span></h1>
+          <p class="lead">Restore clarity, improve nighttime visibility, and refresh your vehicle’s appearance—without the cost of replacing your headlights.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="sms:+14038721281">Text Photos for a Fast Quote</a>
+            <a class="btn btn-secondary" href="tel:+14038721281">Call 403-872-1281</a>
+          </div>
+          <div class="trust-row">
+            <span>Mobile service</span>
+            <span>UV-protective coating</span>
+            <span>Upfront quote</span>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <strong>Get a fast, no-obligation quote</strong>
+          <p>Text clear photos of both headlights. We’ll review their size and condition, then confirm your price before booking.</p>
+          <a class="phone" href="sms:+14038721281">403-872-1281</a>
+          <a class="btn btn-primary" href="sms:+14038721281">Text Your Photos Now</a>
+        </aside>
       </div>
+    </section>
 
-      <div class="mini-grid">
-        <div class="mini-card">
-          <strong>Fast mobile service</strong>
-          <div>Medicine Hat and surrounding area</div>
+    <!-- FEATURED RESULTS: upload before1.jpg through after3.jpg -->
+    <section class="section section-dark" id="results">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Real Results</p>
+          <h2>See the difference.</h2>
+          <p class="lead">Real before-and-after results from headlight restorations completed locally.</p>
         </div>
-        <div class="mini-card">
-          <strong>Cheaper than replacement</strong>
-          <div>Restore your lenses instead of replacing them</div>
-        </div>
-        <div class="mini-card">
-          <strong>Simple quoting</strong>
-          <div>Send photos of your headlights for pricing</div>
-        </div>
-      </div>
-
-      <div class="mini-grid" style="margin-top:16px;">
-        <div class="mini-card">✔ Call or text: <strong>403-872-1281</strong></div>
-        <div class="mini-card">✔ Email: <strong>HoltomHeadlights@gmail.com</strong></div>
-        <div class="mini-card">✔ Serving <strong>Medicine Hat &amp; surrounding area</strong></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="section">
-    <div class="container">
-      <h2>Services</h2>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Single Headlight</h3>
-          <p>Good for vehicles where only one lens needs attention or one side is much worse than the other.</p>
-        </div>
-        <div class="card">
-          <h3>Both Headlights</h3>
-          <p>Our most common service. Restore both lenses for a cleaner, brighter, more even finish.</p>
-        </div>
-        <div class="card">
-          <h3>Mobile Service</h3>
-          <p>We come to your home or workplace when scheduling and location allow.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="pricing" class="section">
-    <div class="container">
-      <h2>Simple Pricing</h2>
-      <p>No confusing packages. Send photos of your headlights for a quick quote and we’ll let you know the best option.</p>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Light / Moderate Oxidation</h3>
-          <div class="price">$120-$150</div>
-          <p>Great for mild to moderate haze and low lens damage.</p>
-        </div>
-        <div class="card featured">
-          <h3>Heavy Yellowing / Full Correction</h3>
-          <div class="price">$150-$180</div>
-          <p>Best value and most popular choice including a deeper refinish.</p>
-        </div>
-        <div class="card">
-          <h3>Severe Oxidation Or Lense Damage</h3>
-          <div class="price">$180-$220+</div>
-          <p>For heavier fading, peeling, or badly worn lenses with more severe damage.</p>
+        <div class="comparison-list">
+          <article class="comparison-card">
+            <div class="comparison-title">Featured Restoration 01</div>
+            <div class="comparison-images">
+              <div class="photo"><img src="before1.JPG" alt="Cloudy headlight before restoration" loading="lazy"><span class="photo-label">Before</span></div>
+              <div class="photo after"><img src="after1.JPG" alt="Clear headlight after restoration" loading="lazy"><span class="photo-label">After</span></div>
+            </div>
+          </article>
+          <article class="comparison-card">
+            <div class="comparison-title">Featured Restoration 02</div>
+            <div class="comparison-images">
+              <div class="photo"><img src="before2.JPG" alt="Cloudy headlight before restoration" loading="lazy"><span class="photo-label">Before</span></div>
+              <div class="photo after"><img src="after2.JPG" alt="Clear headlight after restoration" loading="lazy"><span class="photo-label">After</span></div>
+            </div>
+          </article>
+          <article class="comparison-card">
+            <div class="comparison-title">Featured Restoration 03</div>
+            <div class="comparison-images">
+              <div class="photo"><img src="before3.JPG" alt="Cloudy headlight before restoration" loading="lazy"><span class="photo-label">Before</span></div>
+              <div class="photo after"><img src="after3.JPG" alt="Clear headlight after restoration" loading="lazy"><span class="photo-label">After</span></div>
+            </div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="container">
-      <h2>Why people book this service</h2>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Clearer visibility</h3>
-          <p>Foggy headlights can make night driving harder. Restoring them helps bring back clarity.</p>
-        </div>
-        <div class="card">
-          <h3>Better-looking vehicle</h3>
-          <p>Clean headlights make your whole front end look newer and more cared for.</p>
-        </div>
-        <div class="card">
-          <h3>Affordable fix</h3>
-          <p>Restoration is usually much cheaper than replacing the full headlight assemblies.</p>
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="pricing-wrap">
+          <div class="pricing-copy">
+            <p class="eyebrow">Clear, Simple Pricing</p>
+            <h2>Headlight Restoration Pricing</h2>
+            <div class="price-line">$45–$65</div>
+            <div class="per">Per headlight</div>
+            <p><strong>Most headlights are restored for $45–$65 per headlight.</strong></p>
+            <p>Every headlight is a little different. Final pricing depends on the size of the lens, its condition, and how much preparation is needed to properly restore it.</p>
+            <ul class="check-list">
+              <li>Mobile service included within our regular service area</li>
+              <li>UV-protective ceramic coating included</li>
+              <li>Exact quote provided before any work begins</li>
+            </ul>
+            <div class="actions">
+              <a class="btn btn-primary" href="sms:+14038721281">Text Photos for a Fast Quote</a>
+              <a class="btn btn-secondary" href="tel:+14038721281">Call Now</a>
+            </div>
+          </div>
+          <div class="pricing-photo">
+            <img src="after1.JPG" alt="Restored clear headlight" loading="lazy">
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="container">
-      <h2>How it works</h2>
-      <div class="grid-3">
-        <div class="card">
-          <div class="step-number">1</div>
-          <h3>Send photos</h3>
-          <p>Text photos of both headlights so we can give you a fast quote.</p>
+    <!-- BENEFITS -->
+    <section class="section section-dark" id="benefits">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Why Restore?</p>
+          <h2>Clearer lights. Better value.</h2>
         </div>
-        <div class="card">
-          <div class="step-number">2</div>
-          <h3>Book a time</h3>
-          <p>We set up a convenient mobile appointment in Medicine Hat or surrounding area.</p>
-        </div>
-        <div class="card">
-          <div class="step-number">3</div>
-          <h3>Restore your lenses</h3>
-          <p>We restore the headlights and leave your vehicle looking cleaner and brighter.</p>
+        <div class="card-grid">
+          <article class="info-card"><div class="icon">01</div><h3>Safer Night Driving</h3><p>Remove haze and oxidation that can reduce useful light output.</p></article>
+          <article class="info-card"><div class="icon">02</div><h3>Sharper Appearance</h3><p>Clear lenses instantly make the front of your vehicle look cleaner.</p></article>
+          <article class="info-card"><div class="icon">03</div><h3>Better Than Replacing</h3><p>Restore suitable lenses for far less than buying complete assemblies.</p></article>
+          <article class="info-card"><div class="icon">04</div><h3>Mobile Convenience</h3><p>We come to you within our regular Medicine Hat service area.</p></article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="gallery" class="section">
-    <div class="container">
-      <h2>Before &amp; After</h2>
-      <p>Real results from local headlight restorations.</p>
-      <div class="gallery">
-        <img src="before1.JPG" alt="Before headlight restoration set 1" />
-        <img src="after1.JPG" alt="After headlight restoration set 1" />
-        <img src="before2.JPG" alt="Before headlight restoration set 2" />
-        <img src="after2.JPG" alt="After headlight restoration set 2" />
-        <img src="before3.JPG" alt="Before headlight restoration set 3" />
-        <img src="mid3.JPG" alt="During headlight restoration set 3" />
-        <img src="after3.JPG" alt="After headlight restoration set 3" />
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Services</p>
+          <h2>A complete restoration—not a quick polish.</h2>
+          <p class="lead">Each job is assessed individually so the preparation suits the condition of your lenses.</p>
+        </div>
+        <div class="services-grid">
+          <article class="info-card"><div class="icon">A</div><h3>Oxidation Removal</h3><p>Cloudy, yellowed, and weathered material is carefully removed to restore clarity.</p></article>
+          <article class="info-card"><div class="icon">B</div><h3>Lens Refinishing</h3><p>The lens is refined through the appropriate preparation and polishing stages.</p></article>
+          <article class="info-card"><div class="icon">C</div><h3>UV Protection</h3><p>A UV-protective ceramic coating is applied to help protect the restored finish.</p></article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="contact-grid">
-        <div>
-          <h2 id="quote">Get a fast quote</h2>
-          <p>The easiest way to book is to call, text, or message photos of your headlights. We’ll reply with a quote and availability.</p>
-          <div class="card" style="margin-top:22px;">
-            <p><strong>Call or Text:</strong> 403-872-1281</p>
-            <p><strong>Email:</strong> HoltomHeadlights@gmail.com</p>
-            <p><strong>Location:</strong> Medicine Hat, Alberta and surrounding area</p>
-            <div class="button-row">
-              <a class="btn btn-primary" href="tel:14038721281">Call Now</a>
-              <a class="btn btn-outline" href="sms:14038721281">Text for Quote</a>
-              <a class="btn btn-dark" href="mailto:HoltomHeadlights@gmail.com?subject=Headlight%20Quote">Email Us</a>
+    <!-- RECENT RESTORATIONS: cards 4-9 hide automatically until both photos exist -->
+    <section class="section section-dark" id="portfolio">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Recent Restorations</p>
+          <h2>More transformations.</h2>
+          <p class="lead">A growing collection of real vehicles restored in Medicine Hat and the surrounding area.</p>
+        </div>
+        <div class="portfolio-grid">
+          <article class="portfolio-card optional-job"><div class="comparison-images"><div class="photo"><img src="before4.JPG" alt="Headlight before restoration" loading="lazy"><span class="photo-label">Before</span></div><div class="photo after"><img src="after4.JPG" alt="Headlight after restoration" loading="lazy"><span class="photo-label">After</span></div></div><h3>Recent Restoration 04</h3></article>
+          <article class="portfolio-card optional-job"><div class="comparison-images"><div class="photo"><img src="before5.JPG" alt="Headlight before restoration" loading="lazy"><span class="photo-label">Before</span></div><div class="photo after"><img src="after5.JPG" alt="Headlight after restoration" loading="lazy"><span class="photo-label">After</span></div></div><h3>Recent Restoration 05</h3></article>
+          <article class="portfolio-card optional-job"><div class="comparison-images"><div class="photo"><img src="before6.JPG" alt="Headlight before restoration" loading="lazy"><span class="photo-label">Before</span></div><div class="photo after"><img src="after6.JPG" alt="Headlight after restoration" loading="lazy"><span class="photo-label">After</span></div></div><h3>Recent Restoration 06</h3></article>
+          <article class="portfolio-card optional-job"><div class="comparison-images"><div class="photo"><img src="before7.JPG" alt="Headlight before restoration" loading="lazy"><span class="photo-label">Before</span></div><div class="photo after"><img src="after7.JPG" alt="Headlight after restoration" loading="lazy"><span class="photo-label">After</span></div></div><h3>Recent Restoration 07</h3></article>
+          <article class="portfolio-card optional-job"><div class="comparison-images"><div class="photo"><img src="before8.JPG" alt="Headlight before restoration" loading="lazy"><span class="photo-label">Before</span></div><div class="photo after"><img src="after8.JPG" alt="Headlight after restoration" loading="lazy"><span class="photo-label">After</span></div></div><h3>Recent Restoration 08</h3></article>
+          <article class="portfolio-card optional-job"><div class="comparison-images"><div class="photo"><img src="before9.JPG" alt="Headlight before restoration" loading="lazy"><span class="photo-label">Before</span></div><div class="photo after"><img src="after9.JPG" alt="Headlight after restoration" loading="lazy"><span class="photo-label">After</span></div></div><h3>Recent Restoration 09</h3></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <p class="eyebrow">Get a Fast Quote</p>
+            <h2>Ready for clearer headlights?</h2>
+            <p class="lead">Text photos of both headlights for a quick, no-obligation quote. Include your vehicle year, make, and model if you know them.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="sms:+14038721281">Text Photos Now</a>
+              <a class="btn btn-secondary" href="tel:+14038721281">Call Jaron</a>
+            </div>
+          </div>
+          <div class="contact-details">
+            <a class="contact-link" href="tel:+14038721281"><span>Call or text</span>403-872-1281</a>
+            <a class="contact-link" href="mailto:HoltomHeadlights@gmail.com?subject=Headlight%20Quote"><span>Email</span>HoltomHeadlights@gmail.com</a>
+            <div class="contact-link"><span>Service area</span>Medicine Hat &amp; surrounding area</div>
+            <a class="contact-link" href="https://holtomheadlights.ca"><span>Website</span>holtomheadlights.ca</a>
+            <div class="socials">
+              <a class="btn btn-secondary" href="https://www.facebook.com/profile.php?id=61565245803533&amp;sk=directory_basic_info" target="_blank" rel="noopener">Facebook</a>
+              <a class="btn btn-secondary" href="https://www.instagram.com/holtomheadlights/" target="_blank" rel="noopener">Instagram</a>
             </div>
           </div>
         </div>
-
-        <div class="card">
-          <h3>Message us on social</h3>
-          <p>Follow us or send us a message on Facebook and Instagram.</p>
-          <div class="social-list">
-            <a class="social-link" href="https://www.facebook.com/profile.php?id=61565245803533&sk=directory_basic_info" target="_blank" rel="noreferrer">
-              <span>Facebook</span>
-              <span>Open</span>
-            </a>
-            <a class="social-link" href="https://www.instagram.com/holtomheadlights/" target="_blank" rel="noreferrer">
-              <span>Instagram</span>
-              <span>Open</span>
-            </a>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <footer>© 2026 Holtom Headlights</footer>
+  <footer>
+    <div class="container footer-row">
+      <span>© <span id="year"></span> Holtom Headlights. All rights reserved.</span>
+      <span>Mobile headlight restoration in Medicine Hat, Alberta.</span>
+    </div>
+  </footer>
+
+  <div class="mobile-cta" aria-label="Quick contact">
+    <a class="btn btn-secondary" href="tel:+14038721281">Call</a>
+    <a class="btn btn-primary" href="sms:+14038721281">Text for a Quote</a>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Keep future portfolio slots invisible until both matching images are uploaded.
+    document.querySelectorAll('.optional-job').forEach(function (card) {
+      var images = Array.from(card.querySelectorAll('img'));
+      var failed = false;
+      var update = function () {
+        card.hidden = failed;
+      };
+      images.forEach(function (img) {
+        img.addEventListener('error', function () { failed = true; update(); });
+        if (img.complete && img.naturalWidth === 0) failed = true;
+      });
+      update();
+    });
+  </script>
 </body>
 </html>
